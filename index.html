@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Homebase</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Homebase">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Homebase turns an iPad mini 3 into a smart display and speaker hub.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="device">
+    <div id="frame" data-color="starlight">
+      <div id="bezel">
+        <div id="cam"></div>
+        <div id="screen">
+
+          <!-- HOME -->
+          <section class="view active" id="v-home">
+            <div class="topbar"><div><div class="date" id="h-date"></div><div class="time" id="h-time"></div></div>
+              <div class="tb-r"><button class="tb glass" id="lockBtn" data-i="lock"></button><button class="tb glass" id="editBtn">Edit</button><button class="siri-btn" id="siriBtn" aria-label="Siri"><i></i></button></div></div>
+            <div class="pages-wrap" id="pages-wrap"><div class="pages" id="pages"></div></div>
+            <div class="dots" id="dots"></div>
+          </section>
+
+          <!-- NOW PLAYING -->
+          <section class="view" id="v-music">
+            <div class="bg" id="m-bg"></div>
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <button class="pill-btn glass" id="m-src-btn"><span id="m-src-name">Source</span></button>
+            <div class="art" id="m-art"></div>
+            <div class="meta"><div class="t" id="m-title"></div><div class="a" id="m-artist"></div></div>
+            <div class="prog" id="m-prog"><div class="bar"><div id="m-fill"></div></div><div class="tt"><span id="m-pos">0:00</span><span id="m-rem">-0:00</span></div></div>
+            <div class="ctrls" id="m-ctrls">
+              <button id="m-prev" data-i="prev"></button>
+              <button id="m-play" class="big" data-i="play"></button>
+              <button id="m-next" data-i="next"></button>
+            </div>
+            <div class="sheet" id="m-sheet"></div>
+          </section>
+
+          <!-- CLOCK / TIMER -->
+          <section class="view" id="v-clock">
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <div class="bigtime"><span id="c-time"></span><small id="c-ap"></small></div>
+            <div class="bigdate" id="c-date"></div>
+            <div class="timer">
+              <div class="tdisp" id="t-disp">5:00</div>
+              <div class="tpre"><button data-min="1">1 min</button><button data-min="5" class="sel">5 min</button><button data-min="10">10 min</button><button data-min="25">25 min</button></div>
+              <button class="tgo" id="t-go">Start</button>
+            </div>
+          </section>
+
+          <!-- PHOTOS -->
+          <section class="view" id="v-photos">
+            <div class="ph" id="ph-a"></div><div class="ph" id="ph-b"></div>
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <div class="ph-cap" id="ph-cap"></div>
+            <label class="pill-btn glass add">+ Add photos<input type="file" accept="image/*" multiple id="ph-file"></label>
+          </section>
+
+          <!-- WEATHER -->
+          <section class="view" id="v-weather">
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <div class="wx"><div class="wx-place" id="wx-place">Weather</div><div class="wx-temp" id="wx-temp">--°</div><div class="wx-cond" id="wx-cond">Locating…</div><div class="wx-hl" id="wx-hl"></div></div>
+          </section>
+
+          <!-- REMINDERS -->
+          <section class="view" id="v-rem">
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <h2 class="vt">Reminders</h2>
+            <div class="scroll rem-list" id="rem-list"></div>
+            <form id="rem-form"><input id="rem-in" type="text" placeholder="New reminder" autocomplete="off"><button>Add</button></form>
+          </section>
+
+          <!-- CALENDAR -->
+          <section class="view" id="v-cal">
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <h2 class="vt" id="cal-title"></h2>
+            <div class="cal" id="cal-grid"></div>
+          </section>
+
+          <!-- SETTINGS -->
+          <section class="view" id="v-set">
+            <button class="x glass" data-go="home" data-i="x"></button>
+            <h2 class="vt">Settings</h2>
+            <div class="scroll set-list">
+              <div class="row"><span>Finish</span><div class="swatches" id="swatches"></div></div>
+              <div class="row"><span>Brightness</span><input type="range" min="30" max="100" value="100" id="bright"></div>
+              <div class="row"><span>24-hour time</span><button class="sw" id="sw-24"></button></div>
+              <div class="row"><span>Wallpaper</span><button class="pill-s" id="wp-home">Change</button></div>
+              <div class="row"><span>Lock screen wallpaper</span><button class="pill-s" id="wp-lock">Change</button></div>
+              <div class="row"><span>Lock after 2 min idle</span><button class="sw" id="sw-sb"></button></div>
+              <div class="row"><span>Home Screen apps</span><button class="pill-s" id="set-edit">Edit</button></div>
+              <div class="row"><span>Now Playing source</span><button class="pill-s" id="set-src">Set up</button></div>
+              <div class="note"><b>Keep it awake:</b> iPad Settings → Display &amp; Brightness → Auto-Lock → Never. For kiosk mode, triple-click the Home button to start Guided Access. Plug the iPad in.</div>
+              <div class="note">Smart-home tiles are simulated; a web page can't control real HomeKit devices. Icons are original glass-style artwork, not Apple's.</div>
+            </div>
+          </section>
+
+          <!-- OVERLAYS -->
+          <div id="siri"><div class="orb"></div><div class="say" id="siri-say">Listening…</div><div class="chips" id="siri-chips"></div></div>
+          <div id="lock"><div class="lk-bg" id="lk-bg"></div><div class="lk-date" id="lk-date"></div><div class="lk-time" id="lk-time"></div><div class="lk-np glass" id="lk-np"></div><button class="lk-hint" id="lk-hint">Swipe up to unlock</button></div>
+          <div class="sheet" id="g-sheet"></div>
+          <div id="toast"></div>
+          <div id="dim"></div>
+          <button id="pill" aria-label="Home"></button>
+        </div>
+      </div>
+    </div>
+    <div id="base"><div class="ring"></div><div class="mesh"></div></div>
+  </div>
+  <div id="a2hs"><b>Make it full screen:</b> tap <span class="shr">Share</span> → <b>Add to Home Screen</b>, then open Homebase from your Home Screen.<button id="a2hs-x">Got it</button></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
